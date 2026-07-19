@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
 
   const addToCart = (product) => {
+    if (!loggedInUser) return;
     const alreadyExist = loggedInUser?.cartItems?.some(
       (item) => item.id === product.id,
     );
@@ -36,6 +37,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateUser = (updatedUser) => {
+    if (!loggedInUser) return;
     setLoggedInUser(updatedUser);
 
     localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
@@ -50,6 +52,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const increaseQuantity = (productId) => {
+    if (!loggedInUser) return;
     const updatedCart = loggedInUser.cartItems.map((item) =>
       item.id === productId
         ? {
@@ -66,6 +69,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const decreaseQuantity = (productId) => {
+    if (!loggedInUser) return;
     const updatedCart = loggedInUser.cartItems
       .map((item) =>
         item.id === productId
@@ -84,6 +88,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const removeFromCart = (productId) => {
+    if (!loggedInUser) return;
     const updatedCart = loggedInUser.cartItems.filter(
       (item) => item.id !== productId,
     );
@@ -95,6 +100,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const clearCart = () => {
+    if (!loggedInUser) return;
     updateUser({
       ...loggedInUser,
       cartItems: [],
