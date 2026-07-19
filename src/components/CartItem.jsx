@@ -1,41 +1,10 @@
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useContext } from "react";
-import { ProductContext } from "../context/ProductContext";
+import { AuthContext } from "../context/AuthContext";
 
 const CartItem = ({ product }) => {
-  const {setCartItem} = useContext(ProductContext);
 
-  const increseQuantity = () => {
-    setCartItem((items) => 
-      items.map((item)=>
-          item.id === product.id ? {...item, quantity : item.quantity + 1} : item
-      )
-    )
-  }
-
-  const decreaseQuantity = () => {
-    if(product.quantity === 1)  {
-      setCartItem((items) => 
-        items.filter((item) => {
-          return item.id !== product.id
-        })
-      )
-      return;
-    }
-    setCartItem((items) => 
-      items.map((item)=>
-          item.id === product.id ? {...item, quantity : item.quantity - 1} : item
-      )
-    )
-  }
-
-  const handleDelete = () => {
-    setCartItem((items) => 
-      items.filter((item) => 
-        item.id !== product.id
-      )
-    )
-  }
+  const { removeFromCart, decreaseQuantity, increaseQuantity} = useContext(AuthContext);
 
 
   return (
@@ -66,7 +35,7 @@ const CartItem = ({ product }) => {
             ${product.price}
           </p>
 
-          <button className="text-red-400 hover:text-red-300 cursor-pointer" onClick={handleDelete}>
+          <button className="text-red-400 hover:text-red-300 cursor-pointer" onClick={() => removeFromCart(product.id)}>
             <Trash2 size={18} />
           </button>
         </div>
@@ -74,13 +43,13 @@ const CartItem = ({ product }) => {
         {/* Quantity */}
         <div className="flex items-center justify-between mt-4">
           <div className="flex items-center border border-gray-600 rounded-xl overflow-hidden">
-            <button className="px-3 py-2 text-white hover:bg-gray-700" onClick={decreaseQuantity}>
+            <button className="px-3 py-2 text-white hover:bg-gray-700" onClick={() => decreaseQuantity(product.id)}>
               <Minus size={16} />
             </button>
 
             <span className="px-4 text-white">{product.quantity}</span>
 
-            <button className="px-3 py-2 text-white hover:bg-gray-700" onClick={increseQuantity}>
+            <button className="px-3 py-2 text-white hover:bg-gray-700" onClick={() => increaseQuantity(product.id)}>
               <Plus size={16} />
             </button>
           </div>

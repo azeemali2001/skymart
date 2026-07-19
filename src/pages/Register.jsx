@@ -23,7 +23,10 @@ const Register = () => {
   const [alreadyExist, setAlreadyExist] = useState(false);
 
   const submitRegister = (data) => {
-    const user = data;
+    const user = {
+      ...data,
+      cartItems: [],
+    };
 
     const db = JSON.parse(localStorage.getItem("dataDb")) || [];
     const isExist = db.find((u) => {
@@ -194,7 +197,9 @@ const Register = () => {
               <MoveRight size={20} />
             </button>
             {alreadyExist && (
-              <p className="ml-2 text-xs text-red-400">Email is already Registered</p>
+              <p className="ml-2 text-xs text-red-400">
+                Email is already Registered
+              </p>
             )}
           </form>
 

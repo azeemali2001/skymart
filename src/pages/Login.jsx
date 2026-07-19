@@ -167,7 +167,7 @@ const Login = () => {
               Sign In <MoveRight />
             </button>
             {invalidDtls && (
-              <p className="ml-2 text-xs text-red-400">Invalid Entries</p>
+              <p className="ml-2 text-xs text-red-400">Email or Password is incorrect !</p>
             )}
           </form>
 

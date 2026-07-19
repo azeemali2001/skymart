@@ -7,7 +7,6 @@ export const ProductContext = createContext();
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [cartItem, setCartItem] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -26,9 +25,7 @@ export const ProductProvider = ({ children }) => {
 
         isSidebarOpen,
         setIsSidebarOpen,
-        
-        cartItem,
-        setCartItem,
+
       }}
     >
       {children}

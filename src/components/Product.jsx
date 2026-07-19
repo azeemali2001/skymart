@@ -1,32 +1,13 @@
 import { ShoppingCart, Star, Check } from "lucide-react";
 import { useContext } from "react";
-import { ProductContext } from "../context/ProductContext";
 import { Link } from "react-router";
+import { AuthContext } from "../context/AuthContext";
 
 const Product = ({ product }) => {
-  const { cartItem, setIsSidebarOpen, setCartItem } =
-    useContext(ProductContext);
 
-  const handleAddToCart = () => {
-    setIsSidebarOpen(true);
-    const already = cartItem.some((item) => {
-      return item.id === product.id;
-    });
+  const {loggedInUser, addToCart} = useContext(AuthContext);
 
-    if (!already) {
-      setCartItem((pre) => [...pre, { ...product, quantity: 1 }]);
-    } else {
-      setCartItem((pre) =>
-        pre.map((obj) =>
-          obj.id === product.id ? { ...obj, quantity: obj.quantity + 1 } : obj,
-        ),
-      );
-    }
-
-    console.log(cartItem);
-  };
-
-  const isAddedInCart = cartItem.some((item) => item.id === product.id);
+  const isAddedInCart = loggedInUser?.cartItems?.some((item) => item.id === product.id);
 
   return (
     <div className="w-72 bg-[#1a1a1a] border border-gray-700 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-500/10">
@@ -79,7 +60,7 @@ const Product = ({ product }) => {
 
         {/* Button */}
         <button
-          onClick={handleAddToCart}
+          onClick={() => addToCart(product)}
           className={`mt-5 flex items-center justify-center gap-2  text-black font-semibold py-3 rounded-xl ${isAddedInCart ? "bg-lime-400 hover:bg-lime-300" : "bg-yellow-400 hover:bg-yellow-300"} transition-colors cursor-pointer`}
         >
           {isAddedInCart ? (

@@ -25,10 +25,10 @@ const Home = () => {
     navigate(`/products/?category=${encodeURIComponent(category)}`);
   };
 
-  const { cartItem, products } = useContext(ProductContext);
+  const { products } = useContext(ProductContext);
   const { loggedInUser } = useContext(AuthContext);
 
-  const toalPrice = cartItem.reduce((acc, item) => {
+  const toalPrice = loggedInUser?.cartItems?.reduce((acc, item) => {
     return acc + item.quantity * item.price;
   }, 0);
 
@@ -107,7 +107,7 @@ const Home = () => {
             <Box color="#fffb06" />
           </div>
           <div className="content">
-            <p className="text-bold text-2xl">{cartItem.length}</p>
+            <p className="text-bold text-2xl">{loggedInUser?.cartItems?.length}</p>
             <p className="text-sm text-gray-400">Cart Items</p>
             <p className="text-xs text-gray-500">In your bag</p>
           </div>
@@ -117,7 +117,7 @@ const Home = () => {
             <ArrowUp color="#061fff" />
           </div>
           <div className="content">
-            <p className="text-bold text-2xl">${toalPrice}</p>
+            <p className="text-bold text-2xl">${toalPrice.toFixed(2)}</p>
             <p className="text-sm text-gray-400">Cart Value</p>
             <p className="text-xs text-gray-500">Ready to checkout</p>
           </div>

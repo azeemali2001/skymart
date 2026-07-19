@@ -5,8 +5,8 @@ import { ProductContext } from "../context/ProductContext";
 import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
-  const { setIsSidebarOpen, cartItem } = useContext(ProductContext);
-  const { loggedInUser, setLoggedInUser } = useContext(AuthContext);
+  const { setIsSidebarOpen } = useContext(ProductContext);
+  const { loggedInUser, logout } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -17,11 +17,6 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
     navigate("/login");
-  };
-
-  const logout = () => {
-    localStorage.removeItem("loggedInUser");
-    setLoggedInUser(null);
   };
 
   return (
@@ -74,9 +69,9 @@ const Navbar = () => {
           onClick={openCart}
           className="relative h-10 w-12 flex justify-center items-center cursor-pointer border border-gray-500 rounded-xl text-lg hover:bg-amber-900/30 hover:border-amber-600 hover:text-amber-300"
         >
-          {cartItem.length > 0 && (
+          {loggedInUser?.cartItems?.length > 0 && (
             <span className="absolute -top-2 -right-2 min-w-5 h-5 px-1 flex items-center justify-center rounded-full bg-red-500 text-white text-[11px] font-bold">
-              {cartItem.length}
+              {loggedInUser?.cartItems?.length}
             </span>
           )}
 
