@@ -45,44 +45,44 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-screen text-white p-6">
+    <div className="min-h-screen flex flex-col lg:flex-row text-white p-4 lg:p-6 gap-10 lg:gap-0">
       {/* Side Bar */}
 
-      <div className="flex flex-col gap-5">
-        <div className="flex items-center justify-start gap-5">
+      <div className="flex flex-col gap-5 lg:w-1/2">
+        <div className="flex items-center gap-4">
           <TruckElectric
             className="p-3 bg-yellow-900/30 text-yellow-300 border-yellow-600 border rounded-4xl"
             size={60}
           />
-          <p className="text-3xl">
+          <p className="text-2xl md:text-3xl">
             Sky<span className="text-yellow-600">Mart</span>
           </p>
         </div>
-        <p className="text-yellow-400 uppercase">Welcome Back</p>
+        <p className="text-yellow-full0 uppercase">Welcome Back</p>
         <div className="flex flex-col gap-1">
-          <h1 className="text-7xl">Shop for Future.</h1>
-          <h2 className="text-yellow-600 text-4xl">Today.</h2>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight">Shop for Future.</h1>
+          <h2 className="text-yellow-600 text-2xl sm:text-3xl lg:text-4xl font-semibold">Today.</h2>
         </div>
-        <div className="flex flex-col gap-1 text-gray-500">
+        <div className="flex flex-col gap-1 text-gray-400 text-sm sm:text-base">
           <p>Thousands of products, lightning-fast delivery, and</p>
           <p>prices that make your wallet happy.</p>
         </div>
 
-        <div className="flex gap-3 items-center justify-start ">
-          <div className="border w-40 h-20 rounded-3xl px-5 py-3 flex flex-col items-center justify-center">
-            <p className="text-yellow-400 text-2xl">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="border w-full h-20 rounded-3xl px-5 py-3 flex flex-col items-center justify-center">
+            <p className="text-yellow-full0 text-2xl">
               20<span className="text-3xl">K+</span>
             </p>
             <p className="text-gray-500">Products</p>
           </div>
-          <div className="border w-40 h-20 rounded-3xl px-5 py-3 flex flex-col items-center justify-center">
-            <p className="text-yellow-400 text-2xl">
+          <div className="border w-full h-20 rounded-3xl px-5 py-3 flex flex-col items-center justify-center">
+            <p className="text-yellow-full0 text-2xl">
               50<span className="text-3xl">K+</span>
             </p>
             <p className="text-gray-500">Users</p>
           </div>
-          <div className="border w-40 h-20 rounded-3xl px-5 py-3 flex flex-col items-center justify-center">
-            <p className="text-yellow-400 text-2xl">4.9★</p>
+          <div className="border w-full h-20 rounded-3xl px-5 py-3 flex flex-col items-center justify-center">
+            <p className="text-yellow-full0 text-2xl">4.9★</p>
             <p className="text-gray-500">Rating</p>
           </div>
         </div>
@@ -90,14 +90,14 @@ const Login = () => {
         <div className="right"></div>
       </div>
 
-      <div className="ml-30 w-0.5 h-full bg-white"></div>
+      <div className="hidden lg:block mx-12 w-px bg-gray-700"></div>
 
       {/* Login */}
-      <div className="flex items-center justify-center flex-1">
-        <div className="border p-8 rounded-2xl flex flex-col gap-10 w-100">
+      <div className="flex justify-center items-center lg:w-1/2">
+        <div className="w-full max-w-md border border-gray-700 bg-[#111] rounded-3xl p-6 sm:p-8 flex flex-col gap-8">
           <div className="flex flex-col gap-1">
-            <h1 className="text-3xl font-bold">Sign In</h1>
-            <p className="text-gray-500">Enter the Credentials to continue</p>
+            <h1 className="text-3xl sm:text-4xl font-bold">Sign In</h1>
+            <p className="text-gray-400 text-sm">Enter the Credentials to continue</p>
           </div>
 
           <form
@@ -144,13 +144,13 @@ const Login = () => {
               {showPassword ? (
                 <EyeOff
                   size={18}
-                  className="cursor-pointer text-gray-400 hover:text-yellow-400"
+                  className="cursor-pointer text-gray-400 hover:text-yellow-full0"
                   onClick={() => setShowPassword(false)}
                 />
               ) : (
                 <Eye
                   size={18}
-                  className="cursor-pointer text-gray-400 hover:text-yellow-400"
+                  className="cursor-pointer text-gray-400 hover:text-yellow-full0"
                   onClick={() => setShowPassword(true)}
                 />
               )}
@@ -162,7 +162,7 @@ const Login = () => {
             )}
             <button
               type="submit"
-              className="bg-yellow-300 hover:bg-yellow-600 text-black text-2xl cursor-pointer flex gap-4 items-center justify-center p-5 h-13 w-full border rounded-2xl focus:border-yellow-600"
+              className="w-full h-14 rounded-2xl bg-yellow-300 hover:bg-yellow-500 transition text-black text-lg sm:text-xl font-semibold flex items-center justify-center gap-3 cursor-pointer"
             >
               Sign In <MoveRight />
             </button>
@@ -175,7 +175,7 @@ const Login = () => {
             <p>
               Don't have an account?{" "}
               <span
-                className="text-yellow-400 hover:text-yellow-600 cursor-pointer"
+                className="text-yellow-full0 hover:text-yellow-600 cursor-pointer"
                 onClick={() => navigate("/register")}
               >
                 Create One
